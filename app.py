@@ -1,11 +1,27 @@
 from flask import Flask, render_template
+from db_connect import db
+from flask_migrate import Migrate
+import config
+from views import main_view
+from models import library
 
 #Flask 객체 인스턴스 생성
-app = Flask(__name__)
+def create_app():
 
-@app.route('/') # 접속하는 url
-def index():
-  return render_template('index.html')
+    app = Flask(__name__)
+
+    # db 연결
+    app.config.from_object(config) # config에서 가져온 파일을 사용한다.
+    app.secret_key = "seeeeeeeeeeeeeecret"
+    app.config['SESSION_TYPE'] = 'filesystem'
+
+    db.init_app(app) # SQLAlchemy 객체를 app 객체와 이어준다.
+    Migrate().init_app(app, db)
+
+    # view Blueprint 등록
+    app.register_blueprint(main_view.bp)
+    
+    return app
 
 if __name__=="__main__":
-  app.run(debug=True)
+  create_app().run(debug=True)
