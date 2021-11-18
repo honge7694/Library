@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    form
+{% extends "base.html" %}
+{% block title %}회원가입{% endblock %}
 
-</body>
-</html>
+{% block page_title %}<h1>회원가입</h1>{% endblock %}
+{% block page_content %}
+    <form action="{{ url_for('register.register') }}" method="post" id="login-form">
+        <input name="user_email" required type="text" placeholder="Email"/>
+        <input name="user_pw" type="password" placeholder="Password"/>
+        <input name="user_pw2" type="password" placeholder="Password"/>
+        <input name="user_name" type="text" placeholder="Name"/>
+        <input type="submit" value="Register"/>
+    </form>
+    
+
+{% endblock %}

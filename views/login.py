@@ -4,7 +4,7 @@ from werkzeug.security import check_password_hash
 
 bp = Blueprint('login', '__name__', url_prefix='/login')
 
-bp.route('/', methods=['GET', 'POST'])
+@bp.route('/', methods=['GET', 'POST'])
 def login():
     
     if request.method == 'GET':
@@ -14,7 +14,7 @@ def login():
         user_email = request.form['user_email']
         user_pw = request.form['user_pw']
 
-        user = User.request.filter(User.email == user_email).first()
+        user = User.query.filter(User.email==user_email).first()
 
         if not user:
             flash('이메일을 확인해주세요.')
@@ -29,4 +29,7 @@ def login():
 
             return redirect(url_for('main.home'))
 
-        
+@bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('main.home'))

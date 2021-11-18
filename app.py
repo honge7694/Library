@@ -2,8 +2,8 @@ from flask import Flask, render_template
 from db_connect import db
 from flask_migrate import Migrate
 import config
-from views import main_view
-from models import library
+from views import main_view, register, login
+
 
 #Flask 객체 인스턴스 생성
 def create_app():
@@ -20,6 +20,8 @@ def create_app():
 
     # view Blueprint 등록
     app.register_blueprint(main_view.bp)
+    app.register_blueprint(register.bp)
+    app.register_blueprint(login.bp)
     
     return app
 

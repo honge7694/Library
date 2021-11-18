@@ -4,12 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title} {% endblock %}</title>
+    <link
+        rel="stylesheet"
+        type="text/css"
+        href="{{ url_for('static', filename='style.css') }}"/>
+    <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
     {% include "_navbar.html" %}
     {% block content %}
-
+    {% block page_title %}{% endblock %}
+    <div>
+        {% for message in get_flashed_messages() %}
+                <div class="alert alert-info">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <!-- 각 페이지의 내용이 들어감 -->
+        {% block page_content %} {% endblock %}
+    </div>
     {% endblock %}  
 </body>
 </html>
