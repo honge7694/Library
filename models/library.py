@@ -5,11 +5,11 @@ class libraryRental(db.Model):
     __tablename__ = 'libraryBook'
 
     idx          = db.Column(db.Integer, primary_key=True, nullable=False, autoincrement=True)
-    book_name    = db.Column(db.String(30))
+    name    = db.Column(db.String(30))
     publisher = db.Column(db.String(30))
     author  = db.Column(db.String(30))
     publication_date = db.Column(db.String(50))
-    pages    = db.Column(db.Integer)
+    page    = db.Column(db.Integer)
     isbn = db.Column(db.String(50))
     description   = db.Column(db.String(1000))
     count = db.Column(db.Integer)
