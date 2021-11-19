@@ -1,23 +1,32 @@
 {% extends "base.html" %}
-{% block title %}메인페이지{% endblock %}
 
-{% block page_title %}<h1>대문페이지</h1>{% endblock %}
 {% block page_content %}
 
-{% for book in books %}
-    <div class='list_wrap'>
-        <ul class='list_wrap__ul'>
-            <li class='list_wrap__li'>
-                <div class='list_wrap__li__image'>사진</div>
-                <div class='list_wrap__li__contents'>
-                    <div class='list_wrap__li__title'>{{ book.name }}</div>
-                    <div class="list_wrap__li__star">평점을 작성</div>
-                    <div class="list_wrap__li__count">{{ book.count }}</div>
-                    <a href="#" class='list_wrap__li__a'>대여하기</a>
-                </div>
-            </li>
-        </ul>
-    </div>
-{% endfor %}
+<div class='list_wrap'>
+    <ul class='list_wrap__ul'>
+        {% for book in books %}
+        <li class='list_wrap__li'>
+            <div class='list_wrap__li__image'>
+                <a href="/detail/{{ book.idx }}">
+                    {% if file[book.idx-1] == ".png" %}
+                        <h1>{{file[book.idx-1]}}</h1>
+                        <img src="{{ url_for('static', filename= 'book_img/{}.png'.format(book.idx))}}" alt='{{book.name}}'/>
+                    {% else %}
+                        <h1>{{file[book.idx-1]}}</h1>
+                        <img src="{{ url_for('static', filename= 'book_img/{}.jpg'.format(book.idx))}}" alt='{{book.name}}'/>
+                    {% endif %}
+                </a>
+            </div>
+            <div class='list_wrap__li__info'>
+                <div class='list_wrap__li__title'>{{ book.name }}</div>
+                <div class="list_wrap__li__star">평점을 작성</div>
+                <div class="list_wrap__li__count">{{ book.count }}</div>
+                <a href="#" class='list_wrap__li__a'>대여하기</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
 {% endblock %}
 

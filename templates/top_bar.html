@@ -1,0 +1,39 @@
+<div class="status-bar">
+    <div class="status-bar__contents">
+        <div class="status-bar__column">
+            <h1 class='logo'>
+                <a href="{{ url_for('main.home') }}">
+                    <img src="{{ url_for('static', filename='logo.png') }}"/>
+                </a>
+            </h1>
+        </div>
+    </div>
+    <div class="status-bar__contents">
+        {% if session['user'] %}
+        <div class="status-bar__column">
+            <span>{{ session['name'] }}님! 환영합니다.</span>
+        </div>
+
+        <div class="status-bar__column">
+            <span><a href="#">대여기록</a></span>
+        </div>
+
+        <div class="status-bar__column">
+            <span><a href="#">반납하기</a></span>
+        </div>
+
+        <div class="status-bar__column">
+            <span><a href="{{ url_for('login.logout') }}">Logout</a></span>
+        </div>
+        {% else %}
+        <div class="status-bar__column">
+            <span><a href="{{ url_for('login.login') }}">Login</a></span>
+        </div>
+
+        <div class="status-bar__column">
+            <span><a href="{{ url_for('register.register') }}">Register</a></span>
+        </div>
+        {% endif %}
+    </div>
+</div>
+

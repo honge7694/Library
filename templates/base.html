@@ -12,9 +12,8 @@
 </head>
 <body>
     <div class='all_screen'>
-        {% include "_navbar.html" %}
+        {% include "top_bar.html" %}
         {% block content %}
-        {% block page_title %}{% endblock %}
         <div class='all_screen__body'>
             {% for message in get_flashed_messages() %}
                     <div class="alert alert-info">

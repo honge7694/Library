@@ -1,41 +1,27 @@
+@import "reset.css";
 @import "variables.css";
+
 @import "screens/login.css";
 @import "screens/main_view.css";
+@import "screens/book_detail.css";
 
-* {
+@import "top_bar.css";
+
+body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, 
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     color: #2e363e;
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
 }
-
-ul, li{
-    list-style: none;
-}
-
-a {
-    all: unset;
-}
-
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.vsc-initialized{
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* margin: 0 auto로 center 정렬 */
 .all_screen{
-    width: 80%;
-    margin: 0 auto;
-}
 
-.all_screen__body{
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    margin-top: 100px;
 }
 

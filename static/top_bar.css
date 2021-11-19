@@ -1,0 +1,49 @@
+.status-bar {
+  display: flex;
+  padding: 5px 40px;
+  position: fixed;
+  top: 0;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+  
+  z-index: 1;
+}
+
+.status-bar__contents{
+  display: flex;
+
+}
+
+.status-bar__column .logo img{
+  padding: 0px;
+  height: 20px;
+  color: white;
+}
+
+.status-bar__column{
+  width: auto;
+  font-weight: bold;
+  display: flex;
+  right: 0;
+}
+
+.status-bar__column:nth-child(1) span {
+  margin-right: 15px;
+  
+}
+
+.status-bar__column:nth-child(2) span {
+  margin-right: 15px;
+  
+}
+
+.status-bar__column:nth-child(3) span {
+  margin-right: 15px;
+}
+
+.status-bar__column:nth-child(4) span {
+  margin-right: 15px;
+}

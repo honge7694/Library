@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from db_connect import db
 from flask_migrate import Migrate
 import config
-from views import main_view, register, login
+from views import main_view, register, login, book_detail
 
 
 #Flask 객체 인스턴스 생성
@@ -22,7 +22,7 @@ def create_app():
     app.register_blueprint(main_view.bp)
     app.register_blueprint(register.bp)
     app.register_blueprint(login.bp)
-    
+    app.register_blueprint(book_detail.bp)
     return app
 
 if __name__=="__main__":
