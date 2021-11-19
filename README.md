@@ -25,3 +25,8 @@ __코치님 피드백__
 - login, register, 필수기능 구현완료
 - main 카드리스트 및 데이터 불러오기.
 
+## 11/19
+- top_bar.css, main_view.css 처리
+- detail 설계
+- jpg, png 나눠받기 고민..
+
