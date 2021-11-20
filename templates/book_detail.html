@@ -1,48 +1,91 @@
 {% extends "base.html" %}
 
 {% block page_content %}
-<div class="frame">
-    <div class="container">
-        <div class="container__image">
-            <img src="{{ url_for('static', filename='/book_img/{}.png'.format(book.idx)) }}">
-        </div>
-        <!-- //nav -->
-        <div class="content">
-            <table>
-                <tr>
-                    <td>책이름</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>출판사</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>저자</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>출간일</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>페이지수</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>ISBN코드</td>
-                    <td></td>
-                </tr>
+<div class="detail_frame">
+  <div class="detail_container">
+    <div class="detail_item">
+      <img class="detail_img" src="{{ url_for('static', filename='/book_img/{}.jpg'.format(book.idx)) }}">
+    </div>
+    <div class="detail_item">
+      <table class="table table-hover table-condensed table-bordered">
+        <tr class="detail_table_tr">
+          <td class="detail_table_info">책이름</td>
+          <td class="detail_table_contents" colspan="4">{{ book.name }}</td>
+        </tr>
 
-            </table>
-        </div>
+        <tr class="detail_table_tr">
+          <td class="detail_table_info">출판사</td>
+          <td class="detail_table_contents" colspan="4">{{ book.publisher }}</td>
+        </tr>
+
+        <tr class="detail_table_tr">
+          <td class="detail_table_info">저자</td>
+          <td class="detail_table_contents" colspan="4">{{ book.author }}</td>
+        </tr>
+
+        <tr class="detail_table_tr">
+          <td class="detail_table_info">출간일</td>
+          <td class="detail_table_contents" colspan="4">{{ book.publication_date }}</td>
+        </tr>
+
+        <tr class="detail_table_tr">
+          <td class="detail_table_info">페이지 수</td>
+          <td class="detail_table_contents" colspan="4">{{ book.count }}</td>
+        </tr>
+
+        <tr class="detail_table_tr">
+          <td class="detail_table_info">ISBN 코드</td>
+          <td class="detail_table_contents" colspan="4">{{ book.isbn }}</td>
+        </tr>
+      </table>
     </div>
-    <!-- //container -->
-    <div class="footer">
-        <p class="copyright">&copy;copy</p>
+    <div class="detail_item">
+      <h3>책 소개</h3>
+      <span class="detail_item_span">{{book.description}}</span>
     </div>
-    <!-- //footer -->
+    <div class="detail_item">
+      <h3>댓글</h3>
+      <h5>현재 {{ review_info|length }} 개의 리뷰가 있습니다.(평균: {{ avg }})</h5>
+        {% for review in review_info %}
+            <div>
+                <!-- 리뷰가 3.0점 이상이라면 파란색을, 아니라면 빨간색을 표시함.-->
+                {% if review.rating >= 3 %}
+                    <p>
+                        <span style="color: blue">{{ review.rating }}</span> {{review.content}}
+                        {% if session['user_id'] == review.user_id %}
+                            <a class="btn btn-danger btn-sm" href="#">삭제</a>
+                        {% endif %}
+                    </p>
+                {% else %}
+                    <p>
+                        <span style="color: red">{{ review.rating }}</span> {{review.content}}
+                        {% if session['user_id'] == review.user_id %}
+                            <a class="btn btn-danger btn-sm" href="#">삭제</a>
+                        {% endif %}
+                    </p>
+                {% endif %}
+            </div>
+        {% endfor %}
+      {% if session['user'] %}
+        <form action="#" method="post">
+            <select name="star">
+                <option value="1">1점</option>
+                <option value="2">2점</option>
+                <option value="3">3점</option>
+                <option value="4">4점</option>
+                <option value="5">5점</option>
+            </select>
+            <div class="form-group">
+                <input class="form-control" name="review" id="review" placeholder="리뷰를 작성해주세요."></input> 
+            </div>
+            <input class="btn btn-primary" type="submit" value="리뷰 올리기">
+        </form>
+      {% endif %}
+    </div>
+    <div class="detail_item"><hr/></div>
+  </div>
 </div>
-  <!-- //frame -->
+
+
 {% endblock %}
 

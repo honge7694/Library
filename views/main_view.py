@@ -11,7 +11,8 @@ def home():
         # 페이지
         page = request.args.get('page', type=int, default=1)
         library_list = libraryRental.query.order_by(libraryRental.idx)
-        library_list = library_list.paginate(page, per_page=10)
+        #페이지 개수 표시 per_pate : 8개
+        library_list = library_list.paginate(page, per_page=8)
 
         
         return render_template('main_view.html', books=library_list)
