@@ -8,18 +8,13 @@ bp = Blueprint('main', __name__, url_prefix='/')
 @bp.route('/', methods=('GET', 'POST'))
 def home():
     if request.method == 'GET':
-        library = libraryRental.query.order_by(libraryRental.idx).all()
+        # 페이지
+        page = request.args.get('page', type=int, default=1)
+        library_list = libraryRental.query.order_by(libraryRental.idx)
+        library_list = library_list.paginate(page, per_page=10)
 
-        # 실험 S
-        files=[]
-        for book in library:
-            if (os.path.isfile('/static/book_img/{}.png'.format(book.idx))):
-                files.append(os.path.isfile('/static/book_img/{}.png'.format(book.idx)))
-            else:
-                files.append(os.path.isfile('/static/book_img/{}.jpg'.format(book.idx)))
-            print(book.idx, " : ", files[book.idx-1])
-        # 실험 E
-        return render_template('main_view.html', books=library, file=files)
+        
+        return render_template('main_view.html', books=library_list)
     else:
         # library 대여하기 클릭.
         None

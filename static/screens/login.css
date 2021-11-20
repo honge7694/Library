@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     margin: 0px 30px;
+    align-items: center;
 }
 
 #login-form input {
@@ -9,6 +10,7 @@
     padding: 15px 0px;
     font-size: 18px;
     margin-bottom: 25px;
+    width: 50%;
 }
 
 #login-form input:not([type="submit"]) {
@@ -37,5 +39,5 @@
 text-align: center;
 text-decoration: none;
 color: inherit; /* 부모로 색을 상속 받는 것 */
-font-size: 13px;
+font-size: 15px;
 }
