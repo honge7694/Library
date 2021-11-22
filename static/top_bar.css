@@ -1,6 +1,6 @@
 .status-bar {
   display: flex;
-  padding: 5px 40px;
+  padding: 13px 40px;
   position: fixed;
   top: 0;
   justify-content: space-between;
@@ -14,18 +14,20 @@
 
 .status-bar__contents{
   display: flex;
-
 }
 
 .status-bar__column .logo img{
   padding: 0px;
   height: 20px;
   color: white;
+  display: block;
+  align-items: center;
+  justify-content: center;
 }
 
 .status-bar__column{
   width: auto;
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   right: 0;
 }
@@ -37,13 +39,24 @@
 
 .status-bar__column:nth-child(2) span {
   margin-right: 15px;
-  
+}
+
+.status-bar__column:nth-child(2) span:hover{
+  color: #564BBE;
 }
 
 .status-bar__column:nth-child(3) span {
   margin-right: 15px;
 }
 
+.status-bar__column:nth-child(3) span:hover{
+  color: #564BBE;
+}
+
 .status-bar__column:nth-child(4) span {
   margin-right: 15px;
+}
+
+.status-bar__column:nth-child(4) span:hover{
+  color: #564BBE;
 }

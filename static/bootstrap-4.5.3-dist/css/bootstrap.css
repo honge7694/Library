@@ -5030,7 +5030,7 @@ input[type="button"].btn-block {
 .page-link:focus {
   z-index: 3;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.3);
 }
 
 .page-item:first-child .page-link {
@@ -5048,7 +5048,7 @@ input[type="button"].btn-block {
   z-index: 3;
   color: #fff;
   background-color: var(--elice);
-  border-color: #007bff;
+  border-color: var(--elice);
 }
 
 .page-item.disabled .page-link {

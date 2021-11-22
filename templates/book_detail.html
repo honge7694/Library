@@ -41,42 +41,57 @@
     </div>
     <div class="detail_item">
       <h3>책 소개</h3>
-      <span class="detail_item_span">{{book.description}}</span>
+      <div class="detail_item_description">{{book.description}}</div>
     </div>
     <div class="detail_item">
       <h3>댓글</h3>
-      <h5>현재 {{ review_info|length }} 개의 리뷰가 있습니다.(평균: {{ avg }})</h5>
-        {% for review in review_info %}
-            <div>
-                <!-- 리뷰가 3.0점 이상이라면 파란색을, 아니라면 빨간색을 표시함.-->
-                {% if review.rating >= 3 %}
-                    <p>
-                        <span style="color: blue">{{ review.rating }}</span> {{review.content}}
-                        {% if session['user_id'] == review.user_id %}
-                            <a class="btn btn-danger btn-sm" href="#">삭제</a>
-                        {% endif %}
-                    </p>
-                {% else %}
-                    <p>
-                        <span style="color: red">{{ review.rating }}</span> {{review.content}}
-                        {% if session['user_id'] == review.user_id %}
-                            <a class="btn btn-danger btn-sm" href="#">삭제</a>
-                        {% endif %}
-                    </p>
-                {% endif %}
+      
+        {% for reply in reply_info %}
+          <div class="reply-component">
+            <div class="reply-component__column">
+              <div class="reply-component__star-ratings">
+                <div class="reply-component__star-ratings-fill">
+                  {% for star in range(reply.rating|int) %}
+                    <span>★</span>
+                  {% endfor %}
+                </div>
+                <div class="reply-component__star-ratings-base">
+                  <span>★★★★★</span>
+                </div>
+              </div>
+              <div class="reply-component__info">
+                <span>{{ reply.user_email}}</span>
+                <span> | </span> 
+                <span>{{ reply.write_date }}</span>
+              </div>
+              <div class="reply-component__contents">
+                {{reply.contents}}
+              </div>
             </div>
+            <div class="reply-component__change">
+              {% if session['user'] == reply.user_email %}
+                  <a class="reply-component__touch" href="#">수정</a>
+                  <a class="reply-component__delete" href="#">삭제</a>
+              {% endif %}
+            </div>
+          </div>
         {% endfor %}
       {% if session['user'] %}
-        <form action="#" method="post">
-            <select name="star">
-                <option value="1">1점</option>
-                <option value="2">2점</option>
-                <option value="3">3점</option>
-                <option value="4">4점</option>
-                <option value="5">5점</option>
-            </select>
+        <form action="{{ url_for('detail.create_reply', book_idx=book.idx) }}" method="post" class="replay_form">
+            <div class="star-rating">
+              <input type="radio" id="5-stars" name="rating" value="5" />
+              <label for="5-stars" class="star">&#9733;</label>
+              <input type="radio" id="4-stars" name="rating" value="4" />
+              <label for="4-stars" class="star">&#9733;</label>
+              <input type="radio" id="3-stars" name="rating" value="3" />
+              <label for="3-stars" class="star">&#9733;</label>
+              <input type="radio" id="2-stars" name="rating" value="2" />
+              <label for="2-stars" class="star">&#9733;</label>
+              <input type="radio" id="1-star" name="rating" value="1" />
+              <label for="1-star" class="star">&#9733;</label>
+            </div>
             <div class="form-group">
-                <input class="form-control" name="review" id="review" placeholder="리뷰를 작성해주세요."></input> 
+                <input class="form-control" name="reply" id="reply" placeholder="리뷰를 작성해주세요."></input> 
             </div>
             <input class="btn btn-primary" type="submit" value="리뷰 올리기">
         </form>

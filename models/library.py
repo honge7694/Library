@@ -1,6 +1,6 @@
 from db_connect import db
 
-class libraryRental(db.Model):
+class library(db.Model):
 
     __tablename__ = 'libraryBook'
 
