@@ -35,3 +35,13 @@ __코치님 피드백__
 - review 설계
 - 페이징 처리 구현완료
 
+## 11/21
+- review 구현
+- detail css 완료
+- review css(50%)
+
+## 11/22
+- review css 완료
+- main_view 수정
+- 대여 table 설계
+
