@@ -13,11 +13,12 @@ def home():
         # 페이지
         page = request.args.get('page', type=int, default=1)
         library_list_all = library.query.order_by(library.idx)
-        #페이지 개수 표시 per_pate : 8개
+        #페이지 개수 표시 per_pate : 12개
         library_list = library_list_all.paginate(page, per_page=12)
 
         reply_ratings = libraryReply.query.filter(libraryReply.book_idx == library.idx).all()
         
+        # 별점 계산
         total_sum, count, avg = 0, 0, []
         for book in library_list_all:
             for reply in reply_ratings:
@@ -32,7 +33,6 @@ def home():
 
 @bp.route('/rental/<int:book_idx>')
 def book_rental(book_idx):
-
     if 'user' not in session:
         flash('권한이 없습니다.')
         return redirect(url_for('main.home'))
@@ -42,8 +42,9 @@ def book_rental(book_idx):
     rental_book = libraryRental.query.filter(libraryRental.user_email == user_email).all()
     for rental in rental_book:
         if rental.user_email == user_email and rental.book_idx == book_index:
-            flash('이미 대여 중인 책입니다.')
-            return redirect(url_for('main.home'))
+            if rental.return_date == None:
+                flash('이미 대여 중인 책입니다.')
+                return redirect(url_for('main.home'))
         
     rental_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d %H:%M:%S")
     rental = libraryRental(book_idx, user_email, rental_date)
@@ -51,13 +52,17 @@ def book_rental(book_idx):
     db.session.add(rental)
     db.session.commit()
         
-
+    # 책 개수 빌리기.
     librarybook = library.query.filter(library.idx == book_index).first()
     librarybook.count -= 1
+
+    if librarybook.count == 0:
+        flash('대여가능한 책이 없습니다.')
+        return url_for('main.home')
 
     db.session.add(librarybook)
     db.session.commit()
         
-    
+    pageNum = request.args.get('page')
     flash('책을 대여했습니다.')
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.home', page=pageNum))

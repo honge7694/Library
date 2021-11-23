@@ -27,6 +27,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 250px;
+    max-height: 250px;
 }
 
 .detail_img{
@@ -45,7 +47,7 @@
     grid-column: 2 / 4; /* 2번~4번을 합침(2칸 3칸 병합) */
     grid-row: 1 / 2;
     margin: 0 auto;
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,6 +70,7 @@
   padding: 10px;
 }
 
+
 .detail_table_info{
   font-size: 18px;
   width: 30%;
@@ -79,6 +82,7 @@
 .detail_table_contents{
   font-size: 15px;
   padding-left: 15px;
+
 }
 
 /* 책 소개 */
@@ -267,6 +271,14 @@
   color:#fc0;
 }
 
+.no-rent{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 150px;
+
+  color:rgba(0, 0, 0, 0.5);
+}
 
 
 

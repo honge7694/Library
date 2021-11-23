@@ -114,3 +114,15 @@
     z-index: 0;
     padding: 0;
 }
+
+/* 대여기록의 날짜 */
+.list_wrap__li__record_date{
+    font-size: 14px;
+    letter-spacing: 0px;
+    font-weight: 600;
+    color:rgba(0, 0, 0, 0.7);
+}
+
+.list_wrap__li__record_date:last-child{
+    margin-bottom: 25px;
+}
