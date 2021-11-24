@@ -21,8 +21,8 @@
                     <div class='list_wrap__li__title'>{{ rentalbook.name }}</div>
                     <div class="list_wrap__li__star list_wrap__li__star-ratings">
                         <div class="list_wrap__li__star-ratings-fill">
-                            {% if avg[rentalbook.idx-1] %}
-                                {% for star in range(avg[rentalbook.idx-1]) %}
+                            {% if avg[loop.index-1] %}
+                                {% for star in range(avg[loop.index-1]) %}
                                     <span>★</span>
                                 {% endfor %}
                             {% endif %}

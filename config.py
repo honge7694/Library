@@ -6,3 +6,4 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///{}'.format(os.path.join(BASE_DIR, 'library.
 # os.path.join(BASE_DIR, 'rabbit.db') 를 사용하면, ~~~/rabbit.db 와 같은 디렉토리 구조 문자열이 반환됩니다.
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 # 이걸 켜면 메모리 사용량이 늘어나서, 꺼주는게 좋아요.
+SECRET_KEY = b'Z\xd7o\x03\xaa\xa8A\xa7[\xf2v\xf5\x07_\xb9\xbc'

@@ -26,10 +26,8 @@ def return_home():
     reply_ratings = libraryReply.query.filter(libraryReply.book_idx == libraryRental.book_idx).all()
     
     # 별점 계산
-    library_star = db.session.query(library.idx, library.name, libraryRental.idx.label('rental_idx'), libraryRental.user_email, libraryRental.rental_date, libraryRental.return_date).filter(libraryRental.book_idx == library.idx, libraryRental.return_date != None, libraryRental.user_email == user_email).order_by(libraryRental.rental_date)
-
     total_sum, count, avg = 0, 0, []
-    for book in library_star:
+    for book in library_rental_list:
         for reply in reply_ratings:
             if(book.idx == reply.book_idx):
                 total_sum += reply.rating

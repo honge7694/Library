@@ -11,7 +11,6 @@
 <div class='list_wrap'>
     <ul class='list_wrap__ul'>
         {% for rentalbook in rental_list.items %}
-            
                 <li class='list_wrap__li'>
                     <div class='list_wrap__li__image'>
                         <a href="/detail/{{ rentalbook.idx }}">
@@ -22,8 +21,8 @@
                         <div class='list_wrap__li__title'>{{ rentalbook.name }}</div>
                         <div class="list_wrap__li__star list_wrap__li__star-ratings">
                             <div class="list_wrap__li__star-ratings-fill">
-                                {% if avg[rentalbook.idx-1] %}
-                                    {% for star in range(avg[rentalbook.idx-1]) %}
+                                {% if avg[loop.index-1] %}
+                                    {% for star in range(avg[loop.index-1]) %}
                                         <span>★</span>
                                     {% endfor %}
                                 {% endif %}
@@ -37,8 +36,7 @@
                         <div class="list_wrap__li__record_date"> ~ {{ rentalbook.return_date }}</div>
                     </div>
                 </li>
-            
-        {% endfor %}        
+        {% endfor %}  
     </ul>
 </div>
 {% if not rental_list.items %}

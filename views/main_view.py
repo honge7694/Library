@@ -28,6 +28,9 @@ def home():
             if(total_sum != 0):
                 avg.append(int(total_sum / count))
                 total_sum, count = 0, 0
+            # 배열이기 때문에 순차적으로 평균을 나타내준다.
+            else:
+                avg.append(0)
 
         return render_template('main_view.html', books=library_list, avg=avg)
 

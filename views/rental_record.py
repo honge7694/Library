@@ -24,7 +24,6 @@ def record_home():
     reply_ratings = libraryReply.query.filter(libraryReply.book_idx == libraryRental.book_idx).all()
 
     # 별점 계산
-    
     total_sum, count, avg = 0, 0, []
     for book in library_rental_list:
         for reply in reply_ratings:

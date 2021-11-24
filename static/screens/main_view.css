@@ -126,3 +126,14 @@
 .list_wrap__li__record_date:last-child{
     margin-bottom: 25px;
 }
+
+/* 책을 빌리지 않았을 때 나타남. */
+.no-rent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 150px;
+  
+    color:rgba(0, 0, 0, 0.5);
+  }
+  

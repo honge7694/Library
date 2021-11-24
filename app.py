@@ -12,7 +12,7 @@ def create_app():
 
     # db 연결
     app.config.from_object(config) # config에서 가져온 파일을 사용한다.
-    app.secret_key = "seeeeeeeeeeeeeecret"
+    #app.secret_key = "seeeeeeeeeeeeeecret"
     app.config['SESSION_TYPE'] = 'filesystem'
 
     db.init_app(app) # SQLAlchemy 객체를 app 객체와 이어준다.
