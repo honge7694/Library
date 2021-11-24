@@ -18,6 +18,7 @@ def register():
         # 만들어진 email이 존재하는지 검사
         user = User.query.filter_by(email=user_email).first()
 
+        # TODO 선택 기능 수행 / 이름 영어 한글 / 이메일은 이메일로만
         # email이 존재하지 않는다면.
         if not user:
             if len(user_pw) < 7:

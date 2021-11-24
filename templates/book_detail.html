@@ -4,7 +4,7 @@
 <div class="detail_frame">
   <div class="detail_container">
     <div class="detail_item">
-      <img class="detail_img" src="{{ url_for('static', filename='/book_img/{}.jpg'.format(book.idx)) }}">
+      <img class="detail_img" src="{{ url_for('static', filename='/img/{}'.format(book.img_src)) }}">
     </div>
     <div class="detail_item">
       <table class="table table-hover table-condensed table-bordered">
@@ -36,6 +36,10 @@
         <tr class="detail_table_tr">
           <td class="detail_table_info">ISBN 코드</td>
           <td class="detail_table_contents" colspan="4">{{ book.isbn }}</td>
+        </tr>
+        <tr>
+          <td class="detail_table_info rental_td"></td>
+          <td class="detail_table_rental_btn"><a href="{{ url_for('main.book_rental', book_idx=book.idx) }}" class='list_wrap__li__a table_rental'>대여하기</a></td>
         </tr>
       </table>
     </div>
@@ -69,6 +73,7 @@
               </div>
             </div>
             <div class="reply-component__change">
+              <!-- TODO 댓글 수정 삭제 -->
               {% if session['user'] == reply.user_email %}
                   <a class="reply-component__touch" href="#">수정</a>
                   <a class="reply-component__delete" href="#">삭제</a>

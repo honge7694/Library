@@ -17,7 +17,7 @@ def record_home():
     page = request.args.get('page', type=int, default=1)
 
     # 책 정보를 가져오기 위하여 join
-    library_rental_list = db.session.query(library.idx, library.name, libraryRental.idx.label('rental_idx'), libraryRental.user_email, libraryRental.rental_date, libraryRental.return_date).filter(libraryRental.book_idx == library.idx, libraryRental.return_date != None, libraryRental.user_email == user_email).order_by(libraryRental.rental_date)
+    library_rental_list = db.session.query(library.idx, library.img_src, library.name, libraryRental.idx.label('rental_idx'), libraryRental.user_email, libraryRental.rental_date, libraryRental.return_date).filter(libraryRental.book_idx == library.idx, libraryRental.return_date != None, libraryRental.user_email == user_email).order_by(libraryRental.rental_date)
 
     # 페이지 개수 표시 per_pate : 12개
     rental_list = library_rental_list.paginate(page, per_page=12)
@@ -33,5 +33,7 @@ def record_home():
         if(total_sum != 0):
             avg.append(int(total_sum / count))
             total_sum, count = 0, 0
+        else:
+            avg.append(0)
 
     return render_template('rental_record.html', rental_list=rental_list, avg=avg)

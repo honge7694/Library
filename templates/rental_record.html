@@ -14,7 +14,7 @@
                 <li class='list_wrap__li'>
                     <div class='list_wrap__li__image'>
                         <a href="/detail/{{ rentalbook.idx }}">
-                                <img src="{{ url_for('static', filename= 'book_img/{}.jpg'.format(rentalbook.idx))}}" alt='{{rentalbook.name}}'/>
+                                <img src="{{ url_for('static', filename= 'img/{}'.format(rentalbook.img_src))}}" alt='{{rentalbook.name}}'/>
                         </a>
                     </div>
                     <div class='list_wrap__li__info'>

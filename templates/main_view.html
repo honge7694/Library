@@ -7,14 +7,13 @@
         href="{{ url_for('static', filename='bootstrap-4.5.3-dist/css/bootstrap.css') }}"/>
 {% endblock %}
 {% block page_content %}
-
 <div class='list_wrap'>
     <ul class='list_wrap__ul'>
         {% for book in books.items %}
         <li class='list_wrap__li'>
             <div class='list_wrap__li__image'>
                 <a href="/detail/{{ book.idx }}">
-                        <img src="{{ url_for('static', filename= 'book_img/{}.jpg'.format(book.idx))}}" alt='{{book.name}}'/>
+                        <img src="{{ url_for('static', filename= 'img/{}'.format(book.img_src))}}" alt='{{book.name}}'/>
                 </a>
             </div>
             <div class='list_wrap__li__info'>
@@ -33,7 +32,7 @@
                     </div>
                 </div>
                 <div class="list_wrap__li__count">{{ book.count }}권 남음</div>
-                <a href="{{ url_for('main.book_rental', book_idx=book.idx) }}" class='list_wrap__li__a'>대여하기</a>
+                <a href="{{ url_for('main.book_rental', book_idx=book.idx) }}" class='list_wrap__li__rental'>대여하기</a>
             </div>
         </li>
         {% endfor %}
