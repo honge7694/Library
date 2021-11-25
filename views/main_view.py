@@ -9,6 +9,7 @@ bp = Blueprint('main', __name__, url_prefix='/')
 
 @bp.route('/', methods=['GET'])
 def home():
+    
     if request.method == 'GET':
         # 페이지
         page = request.args.get('page', type=int, default=1)
@@ -42,30 +43,32 @@ def book_rental(book_idx):
     user_email = session['user']
     book_index = book_idx
 
+    # 책 개수 확인.
+    librarybook = library.query.filter(library.idx == book_index).first()
+
+    # 빌린 책인지 확인.
     rental_book = libraryRental.query.filter(libraryRental.user_email == user_email).all()
     for rental in rental_book:
         if rental.user_email == user_email and rental.book_idx == book_index:
             if rental.return_date == None:
                 flash('이미 대여 중인 책입니다.')
                 return redirect(url_for('main.home'))
+
+    if librarybook.count == 0:
+        flash('대여가능한 책이 없습니다.')
+        return redirect(url_for('main.home'))
         
     rental_date = datetime.now(timezone('Asia/Seoul')).strftime("%Y-%m-%d %H:%M:%S")
     rental = libraryRental(book_idx, user_email, rental_date)
 
     db.session.add(rental)
     db.session.commit()
-        
-    # 책 개수 빌리기.
-    librarybook = library.query.filter(library.idx == book_index).first()
+    
     librarybook.count -= 1
-
-    if librarybook.count == 0:
-        flash('대여가능한 책이 없습니다.')
-        return url_for('main.home')
 
     db.session.add(librarybook)
     db.session.commit()
-        
-    pageNum = request.args.get('page')
+    
     flash('책을 대여했습니다.')
     return redirect(url_for('main.home', page=pageNum))
+

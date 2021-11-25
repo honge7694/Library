@@ -11,7 +11,6 @@
     
     grid-template-columns: repeat(3, 1fr); /* 가로 3칸, 1fr씩 차지*/
     grid-template-rows: repeat(3, minmax(200px, auto));
-    
 }
 
 .detail_item{
@@ -29,17 +28,18 @@
     align-items: center;
     max-width: 250px;
     max-height: 330px;
+    overflow: hidden;
 }
 
 .detail_img{
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 100%;
   height: 100%;
   min-width: 150px;
   padding-right: 10px;
+  object-fit: cover;
 }
 
 /* 책 정보 */
@@ -58,6 +58,7 @@
   width: 100%;
   height: 100%;
   border-collapse: collapse;
+  letter-spacing: -1px;
 }
 
 .detail_table_tr{
@@ -225,8 +226,9 @@
   unicode-bidi: bidi-override;
   width: max-content;
   -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-  -webkit-text-stroke-width: 0.8px;
+  -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #2b2a29;
+  -webkit-text-fill-color: #CCCCCC;
   font-size: 18px;
 }
 
@@ -239,7 +241,7 @@
   top: 0;
   left: 0;
   overflow: hidden;
-  -webkit-text-fill-color: gold;
+  -webkit-text-fill-color: #FBC634;
 }
 
 .reply-component__star-ratings-base {
@@ -249,7 +251,6 @@
 /* component 댓글별 동적 */
 
 .star-rating {
-
   display:flex;
   flex-direction: row-reverse;
   font-size:1.5em;

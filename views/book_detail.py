@@ -45,3 +45,18 @@ def create_reply(book_idx):
         # 대여를 한 기록이 없다?
         flash("대여 후 댓글을 남길 수 있습니다.")
         return redirect(url_for('detail.book_detail', book_idx=book_idx))
+    
+@bp.route('/delete_reply/<int:reply_idx>')
+def delete_reply(reply_idx):
+    
+    # 삭제버튼은 email이 같지 않으면 안나타나므로 검사 X
+    reply_info = libraryReply.query.filter(libraryReply.idx == reply_idx).first()
+
+    db.session.delete(reply_info)
+    db.session.commit()
+
+    detail_info = library.query.filter(library.idx == reply_info.book_idx).first()
+    flash("정상적으로 삭제되었습니다.")
+
+    return redirect(url_for('detail.book_detail', book_idx=detail_info.idx))
+

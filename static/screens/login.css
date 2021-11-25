@@ -11,6 +11,7 @@
     font-size: 18px;
     margin-bottom: 25px;
     width: 50%;
+    max-width: 400px;
 }
 
 #login-form input:not([type="submit"]) {
@@ -36,8 +37,11 @@
 }
 
 #login-form a {
-text-align: center;
-text-decoration: none;
-color: inherit; /* 부모로 색을 상속 받는 것 */
-font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    color: inherit; /* 부모로 색을 상속 받는 것 */
+    font-size: 16px;
+    font-weight: 600;
+    color:rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
 }
