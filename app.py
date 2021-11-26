@@ -25,6 +25,7 @@ def create_app():
     app.register_blueprint(book_detail.bp)
     app.register_blueprint(book_return.bp)
     app.register_blueprint(rental_record.bp)
+    
     return app
 
 if __name__=="__main__":
