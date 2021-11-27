@@ -70,5 +70,5 @@ def book_rental(book_idx):
     db.session.commit()
     
     flash('책을 대여했습니다.')
-    return redirect(url_for('main.home', page=pageNum))
+    return redirect(url_for('main.home'))
 
